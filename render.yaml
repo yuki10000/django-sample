@@ -1,0 +1,8 @@
+services:
+  # Webサービス（Django API）
+  - type: web
+    name: djangosample-backend
+    env: docker
+    dockerfilePath: ./Dockerfile.prod
+    dockerContext: .
+    plan: free

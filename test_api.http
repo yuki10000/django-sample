@@ -1,0 +1,11 @@
+### djangosampleユーザー管理システムのテスト
+
+# ホームページの確認
+GET http://localhost:8000/
+
+###
+
+# Hello APIのテスト
+GET http://localhost:8000/hello/
+
+###

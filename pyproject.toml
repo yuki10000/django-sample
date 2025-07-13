@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-sample"
+version = "0.1.0"
+description = "Django sample project"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "Django==5.2.4",
+    "psycopg2-binary==2.9.9",
+    "redis==5.0.1",
+    "django-redis==5.4.0",
+    "python-decouple==3.8",
+    "dj-database-url==2.1.0",
+    "whitenoise==6.6.0",
+    "gunicorn==21.2.0",
+    "djangorestframework==3.14.0",
+    "django-cors-headers==4.3.1",
+    "Pillow==10.1.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_django = "django"
+known_first_party = "django_sample"
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+exclude = [
+    "migrations/",
+    "venv/",
+    ".venv/",
+]
+
+[tool.pylint]
+load-plugins = ["pylint_django"]
+django-settings-module = "django_sample.settings"
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-docstring",
+    "invalid-name",
+    "too-few-public-methods",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests", "migrations"]
+skips = ["B101", "B601"]

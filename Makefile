@@ -1,4 +1,4 @@
-.PHONY: help install install-dev format lint test clean
+.PHONY: help install install-dev format lint test clean check pre-commit
 
 help:
 	@echo "Available commands:"
@@ -7,6 +7,8 @@ help:
 	@echo "  format      - Format code with black and isort"
 	@echo "  lint        - Run all linters"
 	@echo "  test        - Run tests"
+	@echo "  check       - Run format checks without changing files"
+	@echo "  pre-commit  - Run all checks before commit (format + lint + test)"
 	@echo "  clean       - Clean up cache files"
 
 install:
@@ -34,6 +36,15 @@ lint:
 
 test:
 	python manage.py test
+
+check:
+	@echo "Checking code formatting..."
+	black --check .
+	isort --check-only .
+	@echo "Code formatting is correct!"
+
+pre-commit: format lint test check
+	@echo "All pre-commit checks passed! ✅"
 
 clean:
 	find . -type f -name "*.pyc" -delete

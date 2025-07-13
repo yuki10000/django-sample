@@ -15,4 +15,4 @@ python manage.py collectstatic --noinput
 
 # Gunicorn起動
 echo "Starting Gunicorn server..."
-exec gunicorn djangosample.wsgi:application --bind 0.0.0.0:$PORT --workers 4
+exec gunicorn django_sample.wsgi:application --bind 0.0.0.0:$PORT --workers 4

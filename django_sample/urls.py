@@ -20,7 +20,9 @@ from django.urls import path
 
 def health_check(request: HttpRequest) -> JsonResponse:
     """Health check endpoint."""
-    return JsonResponse({"status": "healthy", "timestamp": request.META.get("HTTP_DATE")})
+    return JsonResponse(
+        {"status": "healthy", "timestamp": request.META.get("HTTP_DATE")}
+    )
 
 
 urlpatterns = [
